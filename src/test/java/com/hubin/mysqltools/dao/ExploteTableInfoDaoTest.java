@@ -76,7 +76,7 @@ public class ExploteTableInfoDaoTest {
 				{"CHARACTER_MAXIMUM_LENGTH","长度"},
 				{"IS_NULLABLE","是否为空值"},
 				{"COLUMN_DEFAULT"," 默认值"},
-				{"COLUMN_DEFAULT"," 默认值"},
+				{"COLUMN_KEY","索引类型"},
 				{"INDEX_NAME","索引名称"},
 				{"INDEX_TYPE"," 索引方法"},
 				{"COLUMN_COMMENT","备注"}
@@ -85,10 +85,10 @@ public class ExploteTableInfoDaoTest {
 		try {
 			OutputStream outXlsx = new FileOutputStream("D://表结构"+System.currentTimeMillis()+".xlsx");
 			//获取数据库中所有表名
-			String []tables=exporteTableInfoDao.showTables("adyx_okami");
+			String []tables=exporteTableInfoDao.showTables("aep");
 			
 			for(String tt:tables) {
-				List<Map<String,Object>> list=exporteTableInfoDao.exploteTableStruct("adyx_okami",tt);
+				List<Map<String,Object>> list=exporteTableInfoDao.exploteTableStruct("aep",tt);
 				tableMap.put(tt, list);
 			}
 			com.hubin.mysqltools.utils.ExcelUtils.exportExcelX(column_alias, tableMap,outXlsx);

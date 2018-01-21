@@ -62,12 +62,15 @@ public class ExcelUtils {
 	        headerStyle.setFont(headerFont);
 	        // 单元格样式
 	        CellStyle cellStyle = workbook.createCellStyle();
-	        cellStyle.setFillPattern(HSSFCellStyle.SOLID_FOREGROUND);
+	        //背景填充
+	        //cellStyle.setFillPattern(HSSFCellStyle.SOLID_FOREGROUND);
 	        cellStyle.setBorderBottom(HSSFCellStyle.BORDER_THIN);
 	        cellStyle.setBorderLeft(HSSFCellStyle.BORDER_THIN);
 	        cellStyle.setBorderRight(HSSFCellStyle.BORDER_THIN);
 	        cellStyle.setBorderTop(HSSFCellStyle.BORDER_THIN);
 	        cellStyle.setAlignment(HSSFCellStyle.ALIGN_CENTER);
+	        //自动换行
+	        cellStyle.setWrapText(true);
 	        cellStyle.setVerticalAlignment(HSSFCellStyle.VERTICAL_CENTER);
 	        Font cellFont = workbook.createFont();
 	        cellFont.setBoldweight(HSSFFont.BOLDWEIGHT_NORMAL);
