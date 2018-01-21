@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE log4j:configuration SYSTEM "http://toolkit.alibaba-inc.com/dtd/log4j/log4j.dtd">
+<log4j:configuration xmlns:log4j='http://jakarta.apache.org/log4j/'>
+
+  <!-- 将日志信息输出到文件，可以配置多久产生一个新的日志信息文件 -->
+  <appender name="daily-debug" class="org.apache.log4j.DailyRollingFileAppender">
+        <!-- 日志文件保存路径 -->
+		<param name="File" value="D:/logs/daily-debug.log" />
+		<param name="DatePattern" value="'.'yyyy-MM-dd'.log'" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern"
+				value="[%d{yyyy-MM-dd HH:mm:ss\} %-5p] [%t] (%c:%L) - %m%n" />
+		</layout>
+		
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="levelMin" value="DEBUG" />
+			<param name="levelMax" value="DEBUG" />
+			<param name="AcceptOnMatch" value="true" />
+		</filter>
+	</appender>
+   <!-- 将日志信息输出到文件，可以配置多久产生一个新的日志信息文件 -->
+	<appender name="daily-info" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="File" value="D:/logs/daily-info.log" />
+		<param name="DatePattern" value="'.'yyyy-MM-dd'.log'" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern"
+				value="[%d{yyyy-MM-dd HH:mm:ss\} %-5p] [%t] (%c:%L) - %m%n" />
+		</layout>
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="levelMin" value="INFO" />
+			<param name="levelMax" value="INFO" />
+			<param name="AcceptOnMatch" value="true" />
+		</filter>
+	</appender>
+
+ <!-- 将日志信息输出到文件，可以配置多久产生一个新的日志信息文件 -->
+	<appender name="daily-warn" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="File" value="D:/logs/daily-warn.log" />
+		<param name="DatePattern" value="'.'yyyy-MM-dd'.log'" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern"
+				value="[%d{yyyy-MM-dd HH:mm:ss\} %-5p] [%t] (%c:%L) - %m%n" />
+		</layout>
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="levelMin" value="WARN" />
+			<param name="levelMax" value="WARN" />
+			<param name="AcceptOnMatch" value="true" />
+		</filter>
+	</appender>
+<!-- 将日志信息输出到文件，可以配置多久产生一个新的日志信息文件 -->
+	<appender name="daily-error" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="File" value="D:/logs/daily-error.log" />
+		<param name="DatePattern" value="yyyy-MM-dd'.log'" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern"
+				value="[%d{yyyy-MM-dd HH:mm:ss\} %-5p] [%t] (%c:%L) - %m%n" />
+		</layout>
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="LevelMin" value="ERROR" />
+			<param name="LevelMax" value="ERROR" />
+			<param name="AcceptOnMatch" value="true" />
+		</filter>
+	</appender>
+
+	<!--前台打印 -->
+
+	<appender name="consoleAppender" class="org.apache.log4j.ConsoleAppender">
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="[%d{yyyy-MM-dd HH:mm:ss.SSS}]-[%c]-[%t] %x - %m%n" />
+		</layout>
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="LevelMin" value="DEBUG" />
+			<param name="LevelMax" value="ERROR" />
+			<param name="AcceptOnMatch" value="true" />
+		</filter>
+	</appender>
+	
+	<logger name="com.hubin.mysqltools.dao">
+		<level value="debug" />
+		<appender-ref ref="consoleAppender" />
+	</logger>
+	
+	<root>
+		<priority value="INFO" />
+		<appender-ref ref="consoleAppender" />
+	</root>
+</log4j:configuration>  

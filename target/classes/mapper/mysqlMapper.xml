@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hubin.mysqltools.dao.ExproteTableInfoDao">
+
+
+  
+  <select id="exploteTableStruct"  resultType="java.util.Map">  	
+		SELECT
+			*
+		FROM
+			(
+				SELECT
+					*
+				FROM
+					INFORMATION_SCHEMA. COLUMNS C
+				WHERE
+					C.TABLE_Schema = #{dbName}
+				AND C.table_name = #{tableName}
+			) T1
+		LEFT JOIN (
+			SELECT
+				*
+			FROM
+				INFORMATION_SCHEMA.STATISTICS S
+			WHERE
+				S.TABLE_Schema = #{dbName}
+			AND S.table_name =  #{tableName}
+		) T2 ON T1.table_schema = T2.table_schema
+		AND T1.table_name = T2.table_name
+		AND T1.column_name = T2.column_name;
+		
+  </select>
+  
+   <select id="showTables"   resultType="string">  
+         select TABLE_name from INFORMATION_SCHEMA.TABLES WHERE TABLE_Schema =  #{dbName} ORDER BY TABLE_name
+   </select>
+  
+  
+</mapper>
